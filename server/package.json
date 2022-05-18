@@ -2,10 +2,10 @@
   "name": "server",
   "version": "1.0.0",
   "description": "how to prepare nigeria food api",
-  "main": "app.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon index.js"
   },
   "keywords": [
     "RESTAPI",
