@@ -9,26 +9,39 @@ dotenv.config()
 const port = process.env.PORT;
 const app = express();
 
-const naija_food =['https://insanelygoodrecipes.com/nigerian-foods/'];
-   
+const naija_food =['https://www.thepretendchef.com/nigerian-dishes-to-cook/'];
 
 // routes
 app.get('/api/v1/naija/food', (req, res)=>{
     
     // extracting the data
-    axios.get('https://insanelygoodrecipes.com/nigerian-foods/').then(foods=>{
+    axios.get(`${naija_food}`).then(foods=>{
         let data = []
         const html = foods.data
         const $ = cheerio.load(html);
 
-        $('.ek-link', html).each(function () { //<-- cannot be a function expression
-        data.push($(this).text())
-            // console.log($(this).text())  
+        $('h3 strong [href]', html).each(function () { //<-- cannot be a function expression
+            const result ={
+                title:$(this).text(),
+                link: $(this).attr('href'),
+                content:$(this).children('p').text()
+            }
+        data.push(result)
+            // console.log($(this))  
             
         });
+
         res.json(data)
     }).catch(e=>console.log(e.message));
   
 })
 
 app.listen(port, ()=> console.log(`running on port ${port}`))
+
+
+
+
+// $('.pinterest-block a[data-pin-href]').each(function(){
+//     var newurl = $(this).attr('data-pin-href').replace('repin/x/','');
+//     $(this).attr('data-pin-href', newurl);
+// });
