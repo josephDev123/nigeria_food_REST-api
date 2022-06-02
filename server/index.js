@@ -20,17 +20,14 @@ app.get('/api/v1/naija/food', (req, res)=>{
         const html = foods.data
         const $ = cheerio.load(html);
 
-        $('h3 strong [href]', html).each(function () { //<-- cannot be a function expression
+        $('h3 strong [href]', html).each(function () { 
             const result = {
                 title:$(this).text(),
                 link: $(this).attr('href'),
                 content:$(this).children('p').text()
             }
         data.push(result)
-            // console.log($(this))
-            
         });
-
         res.json(data)
     }).catch(e=>console.log(e.message));
   
@@ -38,10 +35,3 @@ app.get('/api/v1/naija/food', (req, res)=>{
 
 app.listen(port, ()=> console.log(`running on port ${port}`))
 
-
-
-
-// $('.pinterest-block a[data-pin-href]').each(function(){
-//     var newurl = $(this).attr('data-pin-href').replace('repin/x/','');
-//     $(this).attr('data-pin-href', newurl);
-// });
