@@ -1,6 +1,6 @@
 ## Nigeria food REST api
  ### Introduction:
- Nigeria REST API is an API that shows the name and description link on how to prepare Nigerian food. 
+ Nigeria REST API is an API that shows the name of the food and the link on how to prepare Nigerian food. 
 
 ### Installation: Axios/fetch API
 
