@@ -3,7 +3,7 @@ import express from 'express';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
-dotenv.config()
+dotenv.config();
 
 //port
 const port = process.env.PORT;
@@ -21,13 +21,13 @@ app.get('/api/v1/naija/food', (req, res)=>{
         const $ = cheerio.load(html);
 
         $('h3 strong [href]', html).each(function () { //<-- cannot be a function expression
-            const result ={
+            const result = {
                 title:$(this).text(),
                 link: $(this).attr('href'),
                 content:$(this).children('p').text()
             }
         data.push(result)
-            // console.log($(this))  
+            // console.log($(this))
             
         });
 
